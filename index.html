@@ -1,7 +1,68 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>BIP-39 Word List</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f9f9f9;
+        padding: 20px;
+        line-height: 1.6;
+      }
+
+      h1 {
+        text-align: center;
+        color: #333;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .word-list {
+        column-count: 3;
+        column-gap: 20px;
+        padding: 0;
+        list-style: none;
+        max-height: 600px;
+        overflow-y: auto;
+      }
+
+      .word-list li {
+        padding: 4px 0;
+      }
+
+      @media (max-width: 600px) {
+        .word-list {
+          column-count: 1;
+        }
+      }
+    </style>
+  </head>
   <body>
-    <h1>Hello World</h1>
-    <p>I'm hosted with GitHub Pages.</p>
+    <div class="container">
+      <h1>BIP-39 Word List</h1>
+      <ul class="word-list" id="bipWords">
+        <!-- Insert words here like below -->
+        <li>abandon</li>
+        <li>ability</li>
+        <li>able</li>
+        <li>about</li>
+        <li>above</li>
+        <li>absent</li>
+        <li>absorb</li>
+        <li>abstract</li>
+        <li>absurd</li>
+        <li>abuse</li>
+        <li>access</li>
+        <!-- ... and so on -->
+      </ul>
+    </div>
   </body>
 </html>
