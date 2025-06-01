@@ -6,9 +6,17 @@
     <style>
       body {
         font-family: Arial, sans-serif;
-        background: #f9f9f9;
+        background: #f2f2f2;
         padding: 20px;
-        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: auto;
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       }
 
       h1 {
@@ -16,20 +24,11 @@
         color: #333;
       }
 
-      .container {
-        max-width: 800px;
-        margin: 0 auto;
-        background: #fff;
-        padding: 20px;
-        border-radius: 12px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      }
-
       .word-list {
         column-count: 3;
         column-gap: 20px;
-        padding: 0;
         list-style: none;
+        padding: 0;
         max-height: 600px;
         overflow-y: auto;
       }
@@ -49,20 +48,33 @@
     <div class="container">
       <h1>BIP-39 Word List</h1>
       <ul class="word-list" id="bipWords">
-        <!-- Insert words here like below -->
-        <li>abandon</li>
-        <li>ability</li>
-        <li>able</li>
-        <li>about</li>
-        <li>above</li>
-        <li>absent</li>
-        <li>absorb</li>
-        <li>abstract</li>
-        <li>absurd</li>
-        <li>abuse</li>
-        <li>access</li>
-        <!-- ... and so on -->
+        <li>Loading...</li>
       </ul>
     </div>
+
+    <script>
+      fetch("bip39.txt")
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Failed to load bip39.txt");
+          }
+          return response.text();
+        })
+        .then((data) => {
+          const words = data.split(/\r?\n/).filter(Boolean);
+          const wordList = document.getElementById("bipWords");
+          wordList.innerHTML = "";
+          words.forEach((word) => {
+            const li = document.createElement("li");
+            li.textContent = word;
+            wordList.appendChild(li);
+          });
+        })
+        .catch((error) => {
+          document.getElementById(
+            "bipWords"
+          ).innerHTML = `<li style="color:red;">${error.message}</li>`;
+        });
+    </script>
   </body>
 </html>
